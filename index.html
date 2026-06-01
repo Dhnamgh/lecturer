@@ -1,58 +1,59 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Điểm danh giảng viên</title>
-
 <style>
-html,body{
-    margin:0;
-    padding:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#ffffff;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
 }
-
-#app{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    border:none;
+#wrap {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+#f {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 90px);
+  border: 0;
+}
+.block-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 210px;
+  height: 78px;
+  background: #ffffff;
+  z-index: 999999;
+  pointer-events: auto;
 }
 </style>
 </head>
-
 <body>
-
-<iframe
-    id="app"
-    allow="camera; microphone; geolocation"
-    referrerpolicy="strict-origin-when-cross-origin">
-</iframe>
-
+<div id="wrap">
+  <iframe id="f" allow="geolocation; camera; microphone; clipboard-read; clipboard-write"></iframe>
+</div>
+<div class="block-bottom"></div>
 <script>
 (function(){
-
-    const STREAMLIT_APP =
-        "https://giangvien.streamlit.app/?embed=true";
-
-    const qs = window.location.search;
-
-    let url = STREAMLIT_APP;
-
-    if(qs && qs.length > 1){
-        url = STREAMLIT_APP + "&" + qs.substring(1);
-    }
-
-    document.getElementById("app").src = url;
-
+  var base = "https://giangvien.streamlit.app/?embed=true";
+  var qs = window.location.search || "";
+  var url = base;
+  if (qs.length > 1) {
+    url = base + "&" + qs.substring(1);
+  }
+  document.getElementById("f").src = url;
 })();
 </script>
-
 </body>
 </html>
-```
