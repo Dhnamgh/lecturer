@@ -1,0 +1,58 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Điểm danh giảng viên</title>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#ffffff;
+}
+
+#app{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:none;
+}
+</style>
+</head>
+
+<body>
+
+<iframe
+    id="app"
+    allow="camera; microphone; geolocation"
+    referrerpolicy="strict-origin-when-cross-origin">
+</iframe>
+
+<script>
+(function(){
+
+    const STREAMLIT_APP =
+        "https://giangvien.streamlit.app/?embed=true";
+
+    const qs = window.location.search;
+
+    let url = STREAMLIT_APP;
+
+    if(qs && qs.length > 1){
+        url = STREAMLIT_APP + "&" + qs.substring(1);
+    }
+
+    document.getElementById("app").src = url;
+
+})();
+</script>
+
+</body>
+</html>
+```
